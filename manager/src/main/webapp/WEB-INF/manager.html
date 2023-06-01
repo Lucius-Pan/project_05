@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>员工管理界面</title>
+</head>
+<link rel="stylesheet" href="css/manager.css">
+
+<!-- ZUI 标准版压缩后的 CSS 文件 -->
+<link rel="stylesheet" href="dist/css/zui.min.css">
+<!-- ZUI Javascript 依赖 jQuery -->
+<script src="dist/lib/jquery/jquery.js"></script>
+<!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+<script src="dist/js/zui.min.js"></script>
+
+<body>
+<div class="page">
+    <div class="tittle">
+        <span style="margin-left: 10px">一卡通管理后台</span>
+        <div class="tittleRight">
+            <div class="welcome">
+                <span style="margin-left: 10px" id="uname">欢迎：管理员</span>
+            </div>
+            <div class="setPwd">
+                修改密码
+            </div>
+            <div class="sighOut"><span style="margin-left: 15px">注销</span></div>
+        </div>
+    </div>
+    <nav id="menu" class="menu" data-ride="menu" style="width: 200px">
+        <ul id="treeMenu" class="tree tree-menu" data-ride="tree">
+            <li>
+                <a href="#"><i class="icon icon-credit"></i>卡片管理</a>
+                <ul>
+                    <li><a class="menuItem" href="#">卡片管理</a></li>
+                </ul>
+            </li>
+            <li class="open">
+                <a href="#"><i class="icon icon-tasks"></i>系统管理</a>
+                <ul>
+                    <li><a class="menuItem" page="personManager" href="#">人员管理</a></li>
+                    <li><a class="menuItem" href="#">权限管理</a></li>
+                    <li><a class="menuItem" href="#">菜单管理</a></li>
+                    <li><a class="menuItem" href="#">医生排班</a></li>
+                    <li><a class="menuItem" href="#">日志查看</a></li>
+                    <li><a class="menuItem" href="#">参数管理</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div class="frame">
+        <iframe id="frame" width="100%" height="100%" src=""></iframe>
+    </div>
+</div>
+</body>
+<script src="js/manager.js"></script>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- ZUI 标准版压缩后的 CSS 文件 -->
+    <link rel="stylesheet" href="dist/css/zui.min.css">
+    <!-- ZUI Javascript 依赖 jQuery -->
+    <script src="dist/lib/jquery/jquery.js"></script>
+    <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
+    <script src="dist/js/zui.min.js"></script>
+    <link href="dist/lib/picker/zui.picker.min.css" rel="stylesheet">
+    <script src="dist/lib/picker/zui.picker.min.js"></script>
+    <link rel="stylesheet" href="css/personManager.css">
+</head>
+
+<body>
+<div class="lineTitle">
+    人员管理
+</div>
+<div class="buttonGroup">
+    <div style="  width: 210px;  margin-left: 20px;margin-top: 10px;height: 30px;" class="input-control has-icon-left">
+        <input id="inputAcc" type="text" class="form-control" placeholder="用户名">
+        <label for="inputAcc" class="input-control-icon-left"><i class="icon icon-user "></i></label>
+    </div>
+    <div style=" width: 210px;  margin-left: 250px;margin-top: -30px;height: 30px;" class="picker" id="pickerRole"
+         data-placeholder="角色">
+        <input type="text" name="picker1">
+    </div>
+    <div style=" width: 210px;  margin-left: 480px;margin-top: -32px;height: 30px;" class="picker" id="pickerRoom"
+         data-placeholder="科室">
+        <input type="text" name="picker1">
+    </div>
+    <div style=" width: 210px;  margin-left: 710px;margin-top: -32px;height: 30px;" class="picker" id="pickerState"
+         data-placeholder="状态">
+        <input type="text" name="picker1">
+    </div>
+    <button id="search" style="  width: 210px;  margin-left: 20px;margin-top: 10px;height: 30px;" class="btn btn-info "
+            type="button">搜索
+    </button>
+    <button id="insert" style="  width: 210px;  margin-left: 18px;margin-top: 10px;height: 30px;"
+            class="btn btn-success" data-toggle="modal" data-target="#InsertModal">新增
+    </button>
+    <button id="reset" style="  width: 210px;  margin-left: 18px;margin-top: 10px;height: 30px;"
+            class="btn btn-success " type="button">重置
+    </button>
+</div>
+<div class="information">
+    <table class="table table-bordered" id="table">
+        <tr>
+            <th style="text-align: center;">序号</th>
+            <th>姓名</th>
+            <th>科室</th>
+            <th>角色</th>
+            <th>状态</th>
+            <th style="width: 300px">操作</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>1</td>
+            <td>
+                <button class="btn btn-primary " type="button" data-custom="此内容是自定义的:)" data-toggle="modal">
+                    修改
+                </button>
+                <button class="btn btn-danger " type="button">删除</button>
+                <button class="btn btn-info " type="button">禁用</button>
+                <button class="btn btn-warning " type="button">重置密码</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="nextBtn">
+    <button style="width: 90px ; height: 40px" class="btn " type="button" id="previousPage">上一页</button>
+    <span id="page">1/2</span>
+    <button style="width: 90px ; height: 40px" class="btn " type="button" id="nextPage">下一页</button>
+</div>
+<!-- 新增弹窗 -->
+<div class="modal fade" id="InsertModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">关闭</span></button>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-control has-icon-left">
+                    <input style="width: 300px" id="insertInputAcc" type="text" class="form-control"
+                           placeholder="用户名">
+                    <label for="insertInputAcc" class="input-control-icon-left"><i class="icon icon-user "></i></label>
+                </div>
+                <div style="width: 300px ; margin-top: 10px" class="picker" id="pickerInsertRole"
+                     data-placeholder="请选择角色">
+                    <input type="text" name="picker1">
+                </div>
+                <div style="width: 300px ; margin-top: 10px" class="picker" id="pickerInsertRoom"
+                     data-placeholder="请选择科室">
+                    <input type="text" name="picker1">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="insertConfirm" type="button" class="btn btn-primary">新增</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 修改弹窗 -->
+<div class="modal fade" id="UpdateModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="updateId">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">关闭</span></button>
+                <h4 class="modal-title">修改</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-control has-icon-left">
+                    <input disabled="disabled" style="width: 300px" id="updateInputAcc" type="text" class="form-control"
+                           placeholder="用户名">
+                    <label for="updateInputAcc" class="input-control-icon-left"><i class="icon icon-user "></i></label>
+                </div>
+                <div style="width: 300px ; margin-top: 10px" class="picker" id="pickerUpdateRole"
+                     data-placeholder="请选择角色">
+                    <input type="text" name="picker1">
+                </div>
+                <div style="width: 300px ; margin-top: 10px" class="picker" id="pickerUpdateRoom"
+                     data-placeholder="请选择科室">
+                    <input type="text" name="picker1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button id="updateConfirm" type="button" class="btn btn-primary">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="js/personManager.js"></script>
+</html>
