@@ -16,14 +16,19 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("收到了请求"+request.getRequestURI());
-        if (request.getRequestURI().equals("/manager/userLogin")
-                || request.getRequestURI().equals("/manager/insertEmp")
-                || request.getRequestURI().equals("/manager/selectAllEmp")
-                || request.getRequestURI().equals("/updateEmp")) {
-            return true;
-        } else {
-            return false;
+        // 从session中获取用户信息
+        Object user = request.getSession().getAttribute("user");
+        System.out.println("获取到用户："+user);
+        if (user == null) {
+            // 未登录，返回登录页面
+
+//            response.sendRedirect(request.getContextPath()+"/");
+           return false;
         }
+        // 已登录，放行请求
+        System.out.println("已登录，放行请求");
+        return true;
+
 //        return HandlerInterceptor.super.preHandle(request, response, handler);
     }
 

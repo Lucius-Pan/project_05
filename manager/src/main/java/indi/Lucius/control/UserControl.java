@@ -1,12 +1,14 @@
 package indi.Lucius.control;
 
-import indi.Lucius.dto.NormalDto;
+import indi.Lucius.dto.JsonDto;
 import indi.Lucius.pojo.UserPojo;
+import indi.Lucius.service.IUserService;
 import indi.Lucius.service.impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName: UserControl
@@ -20,16 +22,23 @@ import javax.annotation.Resource;
 public class UserControl {
 
     @Resource
-    UserServiceImpl userService;
+    IUserService userService;
 
     //使用账号密码登陆
      @PostMapping("/userLogin")
-     public NormalDto userLogin(String userName,String userPwd) {
+     public JsonDto userLogin( HttpServletRequest request) {
+            String userName = request.getParameter("userName");
+            String userPwd = request.getParameter("userPwd");
+         System.out.println("接受： "+userName+" : "+userPwd);
          UserPojo userPojo = userService.userLogin(userName, userPwd);
+
          if (userPojo == null) {
-             return new NormalDto("500", "fail");
+             return new JsonDto("500", "fail");
          }else {
-             return new NormalDto("200", "succeed", "manager");
+             request.getSession().setAttribute("user",userPojo);
+             JsonDto jsonDto = new JsonDto("200", "succeed");
+             jsonDto.getData().put("location","manager");
+             return jsonDto;
          }
      }
 

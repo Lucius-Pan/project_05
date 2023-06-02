@@ -30,8 +30,10 @@ $("#sendBtn").click(function () {
         success: function (reps) {
             if (reps.code == "200") {
                 alert("登陆成功！");
-                window.location.href = "toManager?page=" + reps.location;
+                window.location.href = "toManager?page=" + reps.data.location;
                 localStorage.setItem("userAcc", userAcc);
+            }else {
+                alert("登陆失败！请检查账号密码");
             }
         },
         error: function (reps) {

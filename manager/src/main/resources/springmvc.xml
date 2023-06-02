@@ -30,6 +30,7 @@
             <mvc:exclude-mapping path="/css/**"/>
             <mvc:exclude-mapping path="/img/**"/>
             <mvc:exclude-mapping path="/dist/**"/>
+            <mvc:exclude-mapping path="/userLogin"/>
 
 
             <bean class="indi.Lucius.interceptor.AuthInterceptor"/>

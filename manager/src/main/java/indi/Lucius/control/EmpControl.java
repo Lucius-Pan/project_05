@@ -1,9 +1,8 @@
 package indi.Lucius.control;
 
-import indi.Lucius.dto.ListPassDto;
-import indi.Lucius.dto.NormalDto;
+import indi.Lucius.dto.JsonDto;
 import indi.Lucius.pojo.EmpPojo;
-import indi.Lucius.service.impl.EmpServiceImpl;
+import indi.Lucius.service.IEmpService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,36 +20,39 @@ import java.util.List;
 public class EmpControl {
 
     @Resource
-    EmpServiceImpl empService;
+    IEmpService empService;
 
     @PostMapping("/insertEmp")
-    public NormalDto insertEmp(String userName, String roleId, String roomId) {
+    public JsonDto insertEmp(String userName, String roleId, String roomId) {
         Integer flag = empService.insertEmp(userName, roleId, roomId);
         if (flag > 0) {
-            return new NormalDto("200", "succeed");
+            return new JsonDto("200", "succeed");
         } else {
-            return new NormalDto("500", "failed");
+            return new JsonDto("500", "failed");
         }
     }
 
     @PostMapping("/selectAllEmp")
-    public ListPassDto selectAllEmp(String userName, String role, String room, String b_state, Integer page) {
+    public JsonDto selectAllEmp(String userName, String role, String room, String b_state, Integer page) {
         List<EmpPojo> list = empService.selectAll(userName, role, room, b_state, page);
         Integer num = empService.selectAllNum(userName, role, room, b_state);
         if (list == null || list.size() == 0) {
-            return new ListPassDto("500", "error or List is null");
+            return new JsonDto("500", "error or List is null");
         } else {
-            return new ListPassDto("200", "succeed", list, num);
+            JsonDto jsonDto = new JsonDto("200", "succeed");
+            jsonDto.getData().put("list", list);
+            jsonDto.getData().put("num", num);
+            return jsonDto;
         }
     }
 
     @PostMapping("/updateEmp")
-    public NormalDto updateEmp(String empId, String roleId, String roomId) {
+    public JsonDto updateEmp(String empId, String roleId, String roomId) {
         Integer flag = empService.updateEmp(empId, roleId, roomId);
         if (flag > 0) {
-            return new NormalDto("200", "succeed");
+            return new JsonDto("200", "succeed");
         } else {
-            return new NormalDto("500", "failed");
+            return new JsonDto("500", "failed");
         }
     }
 }

@@ -128,7 +128,7 @@ function loadPage(userName, role, room, b_state) {
         async: true,
         success: function (reps) { //连接成功
             if (reps.code == "200") {
-                console.log(reps.list.length);
+                console.log(reps.data.list.length);
                 document.getElementById("table").innerHTML = `<table class="table table-bordered" id="table">
    <tr>
        <th style="text-align: center;">序号</th>
@@ -138,13 +138,13 @@ function loadPage(userName, role, room, b_state) {
        <th>状态</th>
        <th style="width: 300px">操作</th>
    </tr>`
-                for (let i = 0; i < reps.list.length; i++) {
-                    let roleName = selectRoleNameById(reps.list[i].roleId);
-                    let roomName = selectRoomNameById(reps.list[i].roomId);
-                    let stateName = selectStateNameById(reps.list[i].bState);
+                for (let i = 0; i < reps.data.list.length; i++) {
+                    let roleName = selectRoleNameById(reps.data.list[i].roleId);
+                    let roomName = selectRoomNameById(reps.data.list[i].roomId);
+                    let stateName = selectStateNameById(reps.data.list[i].bState);
                     document.getElementById("table").innerHTML += `<tr>
-        <td>${reps.list[i].empId}</td>
-        <td>${reps.list[i].empName}</td>
+        <td>${reps.data.list[i].empId}</td>
+        <td>${reps.data.list[i].empName}</td>
         <td>${roomName}</td>
         <td>${roleName}</td>
         <td>${stateName}</td>
@@ -156,7 +156,7 @@ function loadPage(userName, role, room, b_state) {
         </td>
     </tr>`
                     document.getElementById("table").innerHTML += `</table>`
-                    let num = reps.num;
+                    let num = reps.data.num;
                     totalPage = Math.ceil(num / 5);
                     document.getElementById("page").innerText = page + "/" + totalPage;
                 }

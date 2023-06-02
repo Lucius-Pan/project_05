@@ -1,6 +1,6 @@
 package indi.Lucius.control;
 
-import indi.Lucius.dto.NormalDto;
+import indi.Lucius.dto.JsonDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class FileControl {
 
     @PostMapping("manager/upload")
-    public NormalDto uploadFile(){
+    public JsonDto uploadFile(){
         System.out.println("收到了：upload");
         return null;
     }

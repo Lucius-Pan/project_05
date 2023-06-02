@@ -2,6 +2,9 @@ package indi.Lucius.dto;
 
 import lombok.Data;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @ClassName: NormalDto
  * @Description: 普通消息传输
@@ -10,19 +13,22 @@ import lombok.Data;
  */
 
 @Data
-public class NormalDto {
+public class JsonDto {
     private  String code;
     private String mes;
-    private String location;
+    private Map data = new HashMap();
 
-    public NormalDto(String code, String mes) {
+    public JsonDto() {
+    }
+
+    public JsonDto(String code, String mes) {
         this.code = code;
         this.mes = mes;
     }
 
-    public NormalDto(String code, String mes, String location) {
+    public JsonDto(String code, String mes, Map data) {
         this.code = code;
         this.mes = mes;
-        this.location = location;
+        this.data = data;
     }
 }
