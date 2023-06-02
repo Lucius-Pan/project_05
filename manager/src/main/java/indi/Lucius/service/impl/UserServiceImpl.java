@@ -3,7 +3,6 @@ package indi.Lucius.service.impl;
 import indi.Lucius.mapper.UserMapper;
 import indi.Lucius.pojo.UserPojo;
 import indi.Lucius.service.IUserService;
-import indi.Lucius.until.SpringFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +20,6 @@ public class UserServiceImpl implements IUserService {
     UserMapper userMapper;
     @Override
     public UserPojo userLogin(String userName, String userPwd) {
-        userMapper = SpringFactory.getApplicationContext().getBean(UserMapper.class);
         UserPojo userPojo = userMapper.selectUserByAccAndPwd(userName, userPwd);
         return userPojo;
     }

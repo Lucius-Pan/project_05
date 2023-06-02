@@ -16,7 +16,10 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("收到了请求"+request.getRequestURI());
-        if (request.getRequestURI().equals("/manager/userLogin") || request.getRequestURI().equals("/manager/insertEmp") || request.getRequestURI().equals("/manager/selectAllEmp") || request.getRequestURI().equals("/updateEmp")) {
+        if (request.getRequestURI().equals("/manager/userLogin")
+                || request.getRequestURI().equals("/manager/insertEmp")
+                || request.getRequestURI().equals("/manager/selectAllEmp")
+                || request.getRequestURI().equals("/updateEmp")) {
             return true;
         } else {
             return false;
