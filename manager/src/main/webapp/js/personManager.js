@@ -116,7 +116,7 @@ $("#nextPage").click(function () {
 function loadPage(userName, role, room, b_state) {
     $.ajax({
         type: "POST",
-        url: "selectAll",
+        url: "selectAllEmp",
         data: {
             'userName': userName,
             'role': role,
