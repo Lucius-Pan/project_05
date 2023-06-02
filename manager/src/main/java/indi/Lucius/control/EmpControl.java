@@ -55,4 +55,15 @@ public class EmpControl {
             return new JsonDto("500", "failed");
         }
     }
+
+    @PostMapping("/deleteEmp")
+    public JsonDto deleteEmp(String empId) {
+        System.out.println("eid: "+empId);
+        Integer flag = empService.deleteEmp(empId);
+        if (flag > 0) {
+            return new JsonDto("200", "succeed");
+        } else {
+            return new JsonDto("500", "failed");
+        }
+    }
 }

@@ -18,5 +18,5 @@ public interface EmpMapper {
 
     Integer updateEmp(@Param("empId") String empId, @Param("roleId") String roleId, @Param("roomId") String roomId);
 
-
+    Integer deleteEmp(@Param("empId") String empId);
 }

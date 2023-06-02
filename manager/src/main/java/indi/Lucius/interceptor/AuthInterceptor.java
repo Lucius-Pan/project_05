@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName: AuthInterceptor
- * @Description:
+ * @Description: 拦截规则类
  * @Author: Lucius Pan
  * @Date: 2023/6/2 11:03
  */
@@ -18,7 +18,6 @@ public class AuthInterceptor implements HandlerInterceptor {
         System.out.println("收到了请求"+request.getRequestURI());
         // 从session中获取用户信息
         Object user = request.getSession().getAttribute("user");
-        System.out.println("获取到用户："+user);
         if (user == null) {
             // 未登录，返回登录页面
             System.out.println("未登录，返回登录页面");

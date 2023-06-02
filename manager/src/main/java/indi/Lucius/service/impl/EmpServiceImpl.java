@@ -4,6 +4,7 @@ import indi.Lucius.mapper.EmpMapper;
 import indi.Lucius.pojo.EmpPojo;
 import indi.Lucius.service.IEmpService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -45,6 +46,13 @@ public class EmpServiceImpl implements IEmpService {
     @Override
     public Integer updateEmp(String empId, String roleId, String roomId) {
         Integer num = empMapper.updateEmp(empId, roleId, roomId);
+        return num;
+    }
+
+    @Override
+    public Integer deleteEmp(String empId) {
+        Integer num = empMapper.deleteEmp(empId);
+        System.out.println("影响条数"+num);
         return num;
     }
 

@@ -6,7 +6,35 @@ let chooseEid;
 loadPage();
 
 
+function delEmp(e) {
+    let b = window.confirm("请选择 确定 & 取消");
+    if (b) {
+        let empId = e.parentNode.parentNode.children[0].innerText;
+        console.log(eid);
+        $.ajax({
+            type: "POST",
+            url: "deleteEmp",
+            data: {
+                'empId': empId
+            },
+            dataType: 'json',
+            async: true,
+            success: function (reps) { //连接成功
+                if (reps.code == "200") {
+                    alert("删除成功");
+                    loadPage();
+                }
+            }
+            ,
+            error: function (reps) { //连接失败
+                document.write(reps.responseText)
 
+            }
+        })
+    }
+
+
+}
 function setUser(e) {
     chooseEid = e.parentNode.parentNode.children[0].innerText;
     let empName = e.parentNode.parentNode.children[1].innerText;
@@ -150,7 +178,7 @@ function loadPage(userName, role, room, b_state) {
         <td>${stateName}</td>
         <td>
             <button class="btn btn-primary"  type="button" data-toggle="modal" data-target="#UpdateModal" onclick="setUser(this)">修改</button>
-            <button class="btn btn-danger " type="button">删除</button>
+            <button class="btn btn-danger " type="button" onclick="delEmp(this)">删除</button>
             <button class="btn btn-info " type="button">禁用</button>
             <button class="btn btn-warning " type="button">重置密码</button>
         </td>

@@ -17,4 +17,5 @@ public interface IEmpService {
     Integer updateEmp(String empId,String roleId,String roomId);
 
 
+    Integer deleteEmp(String empId);
 }
