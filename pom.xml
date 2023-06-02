@@ -6,6 +6,7 @@
   <packaging>pom</packaging>
   <modules>
     <module>manager</module>
+    <module>entity</module>
   </modules>
   <version>1.0-SNAPSHOT</version>
   <name>project_05 Maven Webapp</name>
