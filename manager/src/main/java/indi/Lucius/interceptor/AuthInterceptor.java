@@ -21,15 +21,15 @@ public class AuthInterceptor implements HandlerInterceptor {
         System.out.println("获取到用户："+user);
         if (user == null) {
             // 未登录，返回登录页面
-
-//            response.sendRedirect(request.getContextPath()+"/");
+            System.out.println("未登录，返回登录页面");
+            response.sendRedirect("/");
            return false;
         }
         // 已登录，放行请求
         System.out.println("已登录，放行请求");
         return true;
 
-//        return HandlerInterceptor.super.preHandle(request, response, handler);
+
     }
 
     @Override
