@@ -66,8 +66,15 @@
     <button style="width: 90px ; height: 40px" class="btn " type="button" id="nextPage">下一页</button>
 </div>
 
-<!-- 上传组件 -->
+<!--<div id="uploaderExample" class="uploader">-->
+<!--    <div class="file-list" data-drag-placeholder="请拖拽文件到此处"></div>-->
+<!--    <button type="button" class="btn btn-primary uploader-btn-browse"><i class="icon icon-cloud-upload"></i> 选择文件</button>-->
+<!--</div>-->
 
+<form id="fileUpload" enctype="multipart/form-data">
+    <input type="file" name="chooseFile">
+    <input type="button" value="上传" id="confirmUpload">
+</form>
 
 
 <!-- 新增弹窗 -->

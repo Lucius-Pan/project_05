@@ -5,6 +5,28 @@ let chooseEid;
 // 加载页面
 loadPage();
 
+$("#confirmUpload").click(function (){
+    let fileUpload = document.getElementById("fileUpload");
+    let formData = new FormData(fileUpload);
+    $.ajax({
+        type: "POST",
+        url: "upload",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (reps) { //连接成功
+            alert("上传成功");
+    }, error: function (reps) { //连接失败
+        document.write(reps.responseText)
+    }
+})
+})
+
+
+// $('#uploaderExample').uploader({
+//     autoUpload: true,            // 当选择文件后立即自动进行上传操作
+//     url: 'upload'  // 文件上传提交地址
+// });
 
 function delEmp(e) {
     let b = window.confirm("请选择 确定 & 取消");
