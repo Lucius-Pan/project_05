@@ -45,6 +45,9 @@
             </if>
         </where>
     </select>
+    <select id="checkEmpId" resultType="java.lang.Integer">
+        select count(emp_id) from emp_info where emp_id = #{empId}
+    </select>
     <insert id="insertEmp" >
         Insert into emp_info (emp_name,room_id,role_id) values (#{empName},#{roomId},#{roleId})
     </insert>

@@ -15,6 +15,8 @@ public class AuthInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        request.setCharacterEncoding("utf8");
+        response.setCharacterEncoding("utf8");
         System.out.println("收到了请求"+request.getRequestURI());
         // 从session中获取用户信息
         Object user = request.getSession().getAttribute("user");

@@ -207,6 +207,7 @@ function loadPage(userName, role, room, b_state) {
     </tr>`
                     document.getElementById("table").innerHTML += `</table>`
                     let num = reps.data.num;
+                    $("#detail").html("详情---共"+num+"条数据");
                     totalPage = Math.ceil(num / 5);
                     document.getElementById("page").innerText = page + "/" + totalPage;
                 }

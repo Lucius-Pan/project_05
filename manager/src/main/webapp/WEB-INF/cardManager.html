@@ -9,13 +9,130 @@
     <script src="dist/lib/jquery/jquery.js"></script>
     <!-- ZUI 标准版压缩后的 JavaScript 文件 -->
     <script src="dist/js/zui.min.js"></script>
+    <link rel="stylesheet" href="css/cardManager.css">
+    <!--    日期控件-->
+    <link href="dist/lib/datetimepicker/datetimepicker.min.css" rel="stylesheet">
+    <script src="dist/lib/datetimepicker/datetimepicker.min.js"></script>
+    <!--下拉框控件-->
+    <link href="dist/lib/picker/zui.picker.min.css" rel="stylesheet">
+    <script src="dist/lib/picker/zui.picker.min.js"></script>
+
 </head>
 <body>
+<div class="lineTitle">
+    卡片管理
+</div>
 <div class="buttonGroup">
-    <div class="input-control has-icon-left">
-        <input id="inputAccountExample1" type="text" class="form-control" placeholder="用户名">
-        <label for="inputAccountExample1" class="input-control-icon-left"><i class="icon icon-user "></i></label>
+    <div class="input-control has-icon-left" style="  width: 140px;  margin-left: 20px;margin-top: 10px;height: 30px;">
+        <input id="cardNum" type="text" class="form-control" placeholder="卡号">
+        <label for="cardNum" class="input-control-icon-left"><i class="icon icon-credit "></i></label>
+    </div>
+    <div class="input-control has-icon-left" style=" width: 140px;  margin-left: 180px;margin-top: -30px;height: 30px;">
+        <input id="empName" type="text" class="form-control" placeholder="持卡人">
+        <label for="empName" class="input-control-icon-left"><i class="icon icon-user "></i></label>
+    </div>
+    <div style=" width: 210px;  margin-left: 330px;margin-top: -32px;height: 30px;"
+         class="input-group date form-date" data-date="" data-date-format="dd MM yyyy - HH:ii p"
+         data-link-field="dtp_input1">
+        <input id="beginTime" class="form-control" size="16" type="text" value="" readonly="" placeholder="注册时间">
+        <span class="input-group-addon"><span class="icon-remove"></span></span>
+        <span class="input-group-addon"><span class="icon-calendar"></span></span>
+    </div>
+    <div style=" width: 210px;   margin-left: 560px;margin-top: -32px;height: 30px;"
+         class="input-group date form-date" data-date="" data-date-format="dd MM yyyy - HH:ii p"
+         data-link-field="dtp_input1">
+        <input id="endTime" class="form-control" size="16" type="text" value="" readonly="" placeholder="到期时间">
+        <span class="input-group-addon"><span class="icon-remove"></span></span>
+        <span class="input-group-addon"><span class="icon-calendar"></span></span>
+    </div>
+    <div style="width: 140px; margin-left: 780px; margin-top: -32px" class="picker" id="pickerState"
+         data-placeholder="状态">
+        <input type="text" name="picker1">
+    </div>
+    <button id="searchCard" style="  width: 210px;  margin-left: 20px;margin-top: 10px;height: 30px;"
+            class="btn btn-info "
+            type="button">搜索
+    </button>
+    <button id="insertCard" style="  width: 210px;  margin-left: 18px;margin-top: 10px;height: 30px;"
+            class="btn btn-success" data-toggle="modal" data-target="#InsertModal">新增
+    </button>
+</div>
+<div class="information">
+    <span class="detail" id="detail">详情---共？条数据</span>
+    <table class="table table-bordered" id="table">
+        <tr>
+            <th style="text-align: center;">序号</th>
+            <th>卡号</th>
+            <th>持卡人</th>
+            <th>状态</th>
+            <th>注册时间</th>
+            <th>截止时间</th>
+            <th style="width: 300px">操作</th>
+        </tr>
+
+    </table>
+</div>
+<div class="nextBtn">
+    <button style="width: 90px ; height: 40px" class="btn " type="button" id="previousPage">上一页</button>
+    <span id="page">1/2</span>
+    <button style="width: 90px ; height: 40px" class="btn " type="button" id="nextPage">下一页</button>
+</div>
+
+
+<!-- 新增弹窗 -->
+<div class="modal fade" id="InsertModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">关闭</span></button>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-control has-icon-left" style="  width: 300px; ">
+                    <input id="insertCardNum" type="text" class="form-control" placeholder="卡号">
+                    <label for="insertCardNum" class="input-control-icon-left"><i class="icon icon-credit "></i></label>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button id="insertConfirm" type="button" class="btn btn-primary">新增</button>
+        </div>
+    </div>
+</div>
+</div>
+<!--分配弹窗-->
+<div class="modal fade" id="allocateModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <input type="hidden" id="allocateId">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                        class="sr-only">关闭</span></button>
+                <h4 class="modal-title">分配</h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-control has-icon-left" style="  width: 300px; ">
+                    <input id="allocateEmpId" type="text" class="form-control" placeholder="请输入要分配的员工编号">
+                    <label for="allocateEmpId" class="input-control-icon-left"><i
+                            class="icon icon-user "></i></label>
+                </div>
+                <div style=" width: 300px;margin-top: 10px;"
+                     class="input-group date form-date" data-date="" data-date-format="dd MM yyyy - HH:ii p"
+                     data-link-field="dtp_input1">
+                    <input id="allocateEndTime" class="form-control" size="16" type="text" value="" readonly="" placeholder="请选择该卡的到期时间">
+                    <span class="input-group-addon"><span class="icon-remove"></span></span>
+                    <span class="input-group-addon"><span class="icon-calendar"></span></span>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button id="allocateCard" type="button" class="btn btn-primary">分配</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
+<script src="js/cardManager.js"></script>
 </html>

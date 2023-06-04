@@ -7,20 +7,17 @@
     height: 25px;
 }
 .buttonGroup {
-     border: rgb(223, 223, 223) 1px solid;
-     border-radius: 7px;
-     width: 950px;
-     height: 100px;
-     margin-left: 20px;
-     margin-top: 20px;
- }
-
-
+    border: rgb(223, 223, 223) 1px solid;
+    border-radius: 7px;
+    width: 950px;
+    height: 100px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
 .information {
     margin-left: 20px;
     margin-top: 20px;
     border: rgb(208, 208, 208) 1px solid;
-    /*border-bottom: none;*/
     border-radius: 7px;
     width: 950px;
     height: 300px;
@@ -35,6 +32,3 @@ th {
     width: 210px;
     margin:10px auto;
 }
-
-
-

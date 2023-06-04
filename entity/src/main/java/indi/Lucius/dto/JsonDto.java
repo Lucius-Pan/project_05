@@ -15,20 +15,20 @@ import java.util.Map;
 @Data
 public class JsonDto {
     private  String code;
-    private String mes;
+    private String msg;
     private Map data = new HashMap();
 
     public JsonDto() {
     }
 
-    public JsonDto(String code, String mes) {
+    public JsonDto(String code, String msg) {
         this.code = code;
-        this.mes = mes;
+        this.msg = msg;
     }
 
-    public JsonDto(String code, String mes, Map data) {
+    public JsonDto(String code, String msg, Map data) {
         this.code = code;
-        this.mes = mes;
+        this.msg = msg;
         this.data = data;
     }
 }
