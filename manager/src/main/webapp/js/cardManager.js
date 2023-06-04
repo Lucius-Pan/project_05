@@ -71,7 +71,23 @@ function loadPage(cardNum, empName, beginTime, endTime,bState) {
     })
 }
 
+$("#previousPage").click(function () {
+    if (page == 1) {
+        alert("已经是第一页了");
+        return;
+    }
+    page--;
+    loadPage();
+})
 
+$("#nextPage").click(function () {
+    if (page == totalPage) {
+        alert("已经是最后一页了");
+        return;
+    }
+    page++;
+    loadPage();
+})
 
 function getCardNum(e) {
     cardNum =e.parentNode.parentNode.children[1].innerHTML;
