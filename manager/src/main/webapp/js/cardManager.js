@@ -20,6 +20,7 @@ function loadPage(cardNum, empName, beginTime, endTime,bState) {
             if (reps.code=="200"){
                 document.getElementById("table").innerHTML = `<table class="table table-bordered" id="table">
         <tr>
+        <th>选择</th>
             <th style="text-align: center;">序号</th>
             <th>卡号</th>
             <th>持卡人</th>
@@ -42,6 +43,7 @@ function loadPage(cardNum, empName, beginTime, endTime,bState) {
                     let allocationBtn = reps.data.list[i].bState == 0 ? `<button class="btn btn-warning " type="button" data-toggle="modal" data-target="#allocateModal" onclick="getCardNum(this)">分配</button>` : `<button class="btn btn-warning " type="button" onclick="resetCard(this)">重置</button>`;
                     console.log("bState: "+bState)
                     document.getElementById("table").innerHTML += `<tr>
+    <td><input type="radio"/></td>
             <td style="text-align: center;">${(i + 1)}</td>
             <td>${cardNum}</td>
             <td>${empName}</td>
@@ -90,7 +92,7 @@ $("#nextPage").click(function () {
 })
 
 function getCardNum(e) {
-    cardNum =e.parentNode.parentNode.children[1].innerHTML;
+    cardNum =e.parentNode.parentNode.children[2].innerHTML;
 }
 $("#insertConfirm").click(function () {
   let cardNum = $("#insertCardNum").val();
@@ -158,7 +160,7 @@ $("#allocateCard").click(function () {
 
 
 function resetCard(e) {
-    let cardNum = e.parentNode.parentNode.children[1].innerHTML;
+    let cardNum = e.parentNode.parentNode.children[2].innerHTML;
     console.log(cardNum);
     $.ajax({
         url: "resetCard",
@@ -182,7 +184,7 @@ function resetCard(e) {
     })
 }
 function deleteCard(e) {
-    let cardNum = e.parentNode.parentNode.children[1].innerHTML;
+    let cardNum = e.parentNode.parentNode.children[2].innerHTML;
     console.log(cardNum);
     $.ajax({
         url: "deleteCard",
@@ -194,6 +196,7 @@ function deleteCard(e) {
         success: function (reps) {
             if (reps.code=="200"){
                 alert("删除成功");
+                page = 1;
                 loadPage();
             }else {
                 alert(reps.msg);

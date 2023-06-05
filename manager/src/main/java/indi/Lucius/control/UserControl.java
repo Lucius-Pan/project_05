@@ -29,7 +29,6 @@ public class UserControl {
      public JsonDto userLogin( HttpServletRequest request) {
             String userName = request.getParameter("userName");
             String userPwd = request.getParameter("userPwd");
-         System.out.println("接受： "+userName+" : "+userPwd);
          UserPojo userPojo = userService.userLogin(userName, userPwd);
 
          if (userPojo == null) {

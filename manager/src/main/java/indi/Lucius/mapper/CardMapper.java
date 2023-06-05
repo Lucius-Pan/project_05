@@ -21,4 +21,6 @@ public interface CardMapper {
     Integer allocateCard(@Param("cardNum") String cardNum, @Param("empId") String empId,@Param("endTime") String endTime);
 
     Integer insertCard(@Param("cardNum") String cardNum);
+
+    Integer selectCard(@Param("cardNum") String cardNum);
 }

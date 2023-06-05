@@ -63,5 +63,9 @@
                 and card_info.b_state = #{bState}
             </if>
         </where>
+        order by card_info.card_num
+    </select>
+    <select id="selectCard" resultType="java.lang.Integer">
+        select count(card_num) from card_info where card_num = #{cardNum}
     </select>
 </mapper>

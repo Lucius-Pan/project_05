@@ -106,6 +106,12 @@ public class CardServiceImpl implements ICardService {
     * @Return java.lang.Integer
     */
     public Integer insertCard(String cardNum) {
-       return cardMapper.insertCard(cardNum);
+        Integer flag = cardMapper.selectCard(cardNum);
+        if (flag==0){
+            return cardMapper.insertCard(cardNum);
+        }else {
+            return -1;
+        }
+
     }
 }

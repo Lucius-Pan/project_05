@@ -4,6 +4,7 @@ import indi.Lucius.dto.JsonDto;
 import indi.Lucius.service.ICardService;
 import indi.Lucius.vo.CardShowVo;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import java.util.List;
  */
 
 @RestController
+
 public class CardControl {
     @Resource
     ICardService cardService;
@@ -72,12 +74,14 @@ public class CardControl {
     }
 
     @PostMapping("/insertCard")
-    public JsonDto insertCard(String cardNum) {
+    public JsonDto insertCard( String cardNum) {
         System.out.println("cardNum:" + cardNum );
         Integer num = cardService.insertCard(cardNum);
         if (num == 0) {
             return new JsonDto("500", "insert fail");
-        }  else {
+        }else if (num == -1) {
+            return new JsonDto("500", "cardNum is exist");
+        } else {
             return new JsonDto("200", "success");
         }
     }

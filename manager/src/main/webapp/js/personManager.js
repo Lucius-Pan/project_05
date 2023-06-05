@@ -5,7 +5,7 @@ let chooseEid;
 // 加载页面
 loadPage();
 
-$("#confirmUpload").click(function (){
+$("#confirmUpload").click(function () {
     let fileUpload = document.getElementById("fileUpload");
     let formData = new FormData(fileUpload);
     $.ajax({
@@ -16,10 +16,10 @@ $("#confirmUpload").click(function (){
         processData: false,
         success: function (reps) { //连接成功
             alert("上传成功");
-    }, error: function (reps) { //连接失败
-        document.write(reps.responseText)
-    }
-})
+        }, error: function (reps) { //连接失败
+            document.write(reps.responseText)
+        }
+    })
 })
 
 
@@ -32,7 +32,7 @@ function delEmp(e) {
     let b = window.confirm("请选择 确定 & 取消");
     if (b) {
         let empId = e.parentNode.parentNode.children[0].innerText;
-        console.log(eid);
+        console.log(empId);
         $.ajax({
             type: "POST",
             url: "deleteEmp",
@@ -44,19 +44,19 @@ function delEmp(e) {
             success: function (reps) { //连接成功
                 if (reps.code == "200") {
                     alert("删除成功");
+                    page = 1;
                     loadPage();
                 }
             }
             ,
             error: function (reps) { //连接失败
                 document.write(reps.responseText)
-
             }
         })
     }
 
-
 }
+
 function setUser(e) {
     chooseEid = e.parentNode.parentNode.children[0].innerText;
     let empName = e.parentNode.parentNode.children[1].innerText;
@@ -207,7 +207,7 @@ function loadPage(userName, role, room, b_state) {
     </tr>`
                     document.getElementById("table").innerHTML += `</table>`
                     let num = reps.data.num;
-                    $("#detail").html("详情---共"+num+"条数据");
+                    $("#detail").html("详情---共" + num + "条数据");
                     totalPage = Math.ceil(num / 5);
                     document.getElementById("page").innerText = page + "/" + totalPage;
                 }
