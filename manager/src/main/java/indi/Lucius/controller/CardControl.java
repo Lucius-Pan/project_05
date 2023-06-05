@@ -1,10 +1,9 @@
-package indi.Lucius.control;
+package indi.Lucius.controller;
 
 import indi.Lucius.dto.JsonDto;
 import indi.Lucius.service.ICardService;
 import indi.Lucius.vo.CardShowVo;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;

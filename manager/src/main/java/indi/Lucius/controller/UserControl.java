@@ -1,9 +1,8 @@
-package indi.Lucius.control;
+package indi.Lucius.controller;
 
 import indi.Lucius.dto.JsonDto;
 import indi.Lucius.pojo.UserPojo;
 import indi.Lucius.service.IUserService;
-import indi.Lucius.service.impl.UserServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 

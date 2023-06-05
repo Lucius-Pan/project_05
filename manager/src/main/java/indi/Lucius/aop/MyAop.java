@@ -1,12 +1,8 @@
 package indi.Lucius.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -52,6 +48,14 @@ public class MyAop {
         //继续执行下一步
         Object object = joinPoint.proceed();
         return object;
+    }
+
+
+    @AfterThrowing(pointcut = "execution(public * indi.Lucius.*.*.*(..))",throwing = "ex")
+    public void afterThrowing(Exception ex) {
+
+        System.out.println("异常通知"+ex.getMessage());
+        ex.printStackTrace();
     }
 
 

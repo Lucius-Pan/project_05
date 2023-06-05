@@ -1,4 +1,4 @@
-package indi.Lucius.control;
+package indi.Lucius.controller;
 
 import indi.Lucius.dto.JsonDto;
 import org.apache.commons.io.IOUtils;
